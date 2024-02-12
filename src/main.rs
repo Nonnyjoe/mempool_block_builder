@@ -111,6 +111,7 @@ fn select_priority(all_transactions: Vec::<TransactionData>) {
     println!("number of transaction is:{}", new_block_transactions.len());
     println!("new block weigth is:{}", block_weight);
     println!("new block miner fee is:{}", miner_fee);
+    println!("New Block Transactions exceeds terminal limit, please check the new_block.txt file to view all transaction Id's");
 
     // Write the new block to a file
     let success = print_new_block_to_file(new_block_transactions.clone(), &mut block_weight, &mut miner_fee);
@@ -182,11 +183,11 @@ fn print_new_block(new_block_transactions: Vec<TransactionData>) {
 fn print_new_block_to_file(new_block_transactions: Vec<TransactionData>, block_weight: &mut u128, miner_fee: &mut u128) -> io::Result<()> {
     let mut file = File::create("./new_block.txt")?;
 
-    let write1 = writeln!(file, "Block Header ====================================");
-    let write1 = writeln!(file, "number of transaction is:{}", new_block_transactions.len());
-    let write1 = writeln!(file, "new block weigth is:{}", block_weight);
-    let write1 = writeln!(file, "new block miner fee is:{}", miner_fee);
-    let write1 = writeln!(file, "Block Transactions ==================================");
+    let _write1 = writeln!(file, "Block Header ====================================");
+    let _write1 = writeln!(file, "number of transaction is:{}", new_block_transactions.len());
+    let _write1 = writeln!(file, "new block weigth is:{}", block_weight);
+    let _write1 = writeln!(file, "new block miner fee is:{}", miner_fee);
+    let _write1 = writeln!(file, "Block Transactions ==================================");
 
     for transaction in new_block_transactions {
         writeln!(file, "{}", transaction.txid)?;
